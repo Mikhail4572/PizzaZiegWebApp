@@ -1,0 +1,14 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="shortcut icon" href="~/images/icon.ico" />
+    <title>@(ViewBag.Title ?? "Головна сторінка")</title>
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderPartial")
+
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

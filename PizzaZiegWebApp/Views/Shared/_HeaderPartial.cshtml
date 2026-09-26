@@ -1,0 +1,24 @@
+﻿@inject IConfiguration config
+@{
+    var appConfig = config.GetSection("Project").Get<AppConfig>()!;
+}
+
+<link rel="stylesheet" href="~/css/headerStyle.css" asp-append-version="true" />
+
+
+<header class="site-header"> 
+    <div class="header-container">
+        <a class="logo"> 🍕 PIZZA HOUSE </a> 
+        <nav class="navigation"> 
+            <a>Главная</a> 
+            <a>Меню</a> 
+            <a>Акции</a> 
+            <a>Контакты</a> 
+        </nav> 
+        <div class="header-right"> 
+            <a href="tel:@appConfig.Company.CompanyPhone" class="phone"> 📞 @appConfig.Company.CompanyPhoneShort </a>
+            <a href="mailto:@appConfig.Company.CompanyEmail" class="phone"> 📞 @appConfig.Company.CompanyEmail </a>
+            <a class="cart"> 🛒 Корзина </a> 
+        </div> 
+   </div>
+</header>

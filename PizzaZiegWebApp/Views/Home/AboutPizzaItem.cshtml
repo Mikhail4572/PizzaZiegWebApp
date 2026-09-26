@@ -1,0 +1,27 @@
+﻿@model Product
+@{
+    ViewBag.Title = "Опис продукту";
+}
+
+<link rel="stylesheet" href="~/css/AboutPizzaItemStyle.css" asp-append-version="true" />
+
+<div class="product-container">
+    <img class="product-image" src="~/images/@Model.PhotoPath" alt="@Model.Name">
+    <div class="product-info"> 
+        <h1 class="product-name"> @Model.Name </h1> 
+        <div class="product-description">
+            @Model.Description 
+        </div> 
+
+        <div class="product-size">
+            <strong>Размер:</strong> @Model.SizeSm см 
+        </div> 
+        <div class="product-price"> @Model.Price ₴ </div>
+
+        <form> 
+            <input type="hidden" name="id" value="@Model.Id" /> 
+            <button class="buy-button" type="submit"> Купити </button>
+        </form> 
+    </div> 
+</div>
+
