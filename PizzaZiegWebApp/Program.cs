@@ -18,7 +18,6 @@ ArgumentNullException.ThrowIfNull(config, "config");
 
 builder.Services.AddDbContext<AppDbContext>
     (x => x.UseLazyLoadingProxies().UseSqlServer(config.Database.ConnectionString).
-   // (x => x.UseLazyLoadingProxies().UseSqlServer("Data Source=DESKTOP-VP3KR0S; Database=PizzaSeigDb; Integrated Security=True; TrustServerCertificate=True;").
     ConfigureWarnings(x => x.Ignore(RelationalEventId.PendingModelChangesWarning)));
 
 

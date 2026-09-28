@@ -39,7 +39,7 @@ public class HomeController : Controller
                     SizeSm = 4
                 }
             ];
-
+            
             _context.Products.AddRange(products);
             _context.SaveChanges();
         }
