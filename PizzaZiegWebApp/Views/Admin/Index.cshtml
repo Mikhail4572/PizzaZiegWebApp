@@ -1,0 +1,46 @@
+﻿@model List<Product>
+@{
+    ViewBag.Title = "Панель адмiнiстратора";
+}
+    
+<link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
+
+<div class="products-container">
+    @foreach (var product in Model)
+    {
+        <div class="product-card">
+            <div class="product-card__image-wrapper">
+                <img class="product-card__image"
+                     src="~/images/@product.PhotoPath"
+                     alt="@product.Name">
+            </div>
+            <div class="product-card__body">
+                <h3 class="product-card__name">@product.Name</h3>
+                <p class="product-card__description">@product.Description</p>
+                <div class="product-card__footer">
+                    <span class="product-card__size">Размер: @product.SizeSm</span>
+                    <span class="product-card__price">@product.Price</span>
+                </div>
+
+                <a asp-area="" asp-controller="Admin" class="button-buy" asp-action="AboutPizzaItem"
+                   asp-route-id="@product.Id">Редагувати</a>
+
+                <a asp-area="" asp-controller="Admin" style="background-color: #e74c3c;"
+                class="button-buy" asp-action="AboutPizzaItem"
+                   asp-route-id="@product.Id">Видалити</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+@* <script>
+    function buttonClick()
+    {
+        const links = [... document.getElementById('a')];
+        for(let link of links)
+        {
+            link.remove();
+        }
+    }
+</script> *@

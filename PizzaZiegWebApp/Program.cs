@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using PizzaZiegWebApp.Domain;
@@ -21,6 +22,28 @@ builder.Services.AddDbContext<AppDbContext>
     ConfigureWarnings(x => x.Ignore(RelationalEventId.PendingModelChangesWarning)));
 
 
+//настраиваем Identity систему (для админа)
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+{
+    options.User.RequireUniqueEmail = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+}).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+//настраиваем Auth cookie
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.Name = "myCompanyAuth";
+    options.Cookie.HttpOnly = true;
+    options.LoginPath = "/account/login";
+    options.AccessDeniedPath = "/admin/accessdenied";
+    options.SlidingExpiration = true;
+});
+
+
 builder.Services.AddControllersWithViews();
 
 
@@ -30,6 +53,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseCookiePolicy();
+app.UseAuthorization();
 app.UseAuthentication();
 
 app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");

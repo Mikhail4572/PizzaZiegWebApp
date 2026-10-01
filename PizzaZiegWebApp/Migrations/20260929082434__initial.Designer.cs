@@ -11,7 +11,7 @@ using PizzaZiegWebApp.Domain;
 namespace PizzaZiegWebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260928150740__initial")]
+    [Migration("20260929082434__initial")]
     partial class _initial
     {
         /// <inheritdoc />
